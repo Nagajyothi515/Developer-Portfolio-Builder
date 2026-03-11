@@ -21,8 +21,6 @@ The system aims to:
 * Automatically generate a public portfolio page
 * Demonstrate full-stack web development using modern technologies
 
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/29c85131-c670-49dd-a12c-93732f33725e" />
-
 ---
 
 ### 3. Scope of the Project
