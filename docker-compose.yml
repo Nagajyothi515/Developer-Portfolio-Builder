@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+
+  # ===============================
+  # BACKEND SERVICE
+  # ===============================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: devportfolio-backend
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      DB_USER: sa
+      DB_PASSWORD: Admin@1234
+      DB_SERVER: host.docker.internal
+      DB_NAME: DevPortfolioDB
+      DB_PORT: 1433
+      JWT_SECRET: devportfolio_secret_key
+    restart: unless-stopped
+    networks:
+      - devportfolio-network
+
+  # ===============================
+  # FRONTEND SERVICE
+  # ===============================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: devportfolio-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - devportfolio-network
+
+# ===============================
+# NETWORK
+# ===============================
+networks:
+  devportfolio-network:
+    driver: bridge
